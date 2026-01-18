@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cosa Fare - Casa in Collina</title>
+  <meta name="description" content="Scopri le attrazioni e le attività vicino alla nostra casa vacanze a Cesena">
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body class="bg-gray-50">
+  <!-- Navigation -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex-shrink-0">
+          <a href="/" class="text-2xl font-bold text-primary-700">Casa in Collina</a>
+        </div>
+        <div class="hidden md:block">
+          <div class="ml-10 flex items-baseline space-x-4">
+            <a href="/" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+            <a href="/things-to-do.html" class="text-gray-900 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium">Cosa Fare</a>
+            <a href="/contact.html" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium">Contatti</a>
+            <button id="openCalendar" class="btn-primary text-sm py-2">Prenota Ora</button>
+          </div>
+        </div>
+        <div class="md:hidden">
+          <button id="mobile-menu-button" class="text-gray-700 hover:text-primary-600 focus:outline-none">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <a href="/" class="text-gray-700 hover:text-primary-600 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+        <a href="/things-to-do.html" class="text-gray-900 hover:text-primary-600 block px-3 py-2 rounded-md text-base font-medium">Cosa Fare</a>
+        <a href="/contact.html" class="text-gray-700 hover:text-primary-600 block px-3 py-2 rounded-md text-base font-medium">Contatti</a>
+        <button id="openCalendarMobile" class="btn-primary w-full text-sm">Prenota Ora</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="bg-primary-600 text-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Cosa Fare nei Dintorni</h1>
+      <p class="text-xl">Scopri le meraviglie della Romagna e delle colline cesenati</p>
+    </div>
+  </section>
+
+  <!-- Activities Section -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Cities & Culture -->
+      <div class="mb-16">
+        <h2 class="section-title">Città e Cultura</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=800&h=600&fit=crop" alt="Cesena" class="w-full h-48 object-cover">
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Cesena</h3>
+              <p class="text-gray-600 mb-2">📍 10 km</p>
+              <p class="text-gray-700">
+                Visita la splendida Biblioteca Malatestiana (patrimonio UNESCO), la Rocca Malatestiana 
+                e il centro storico con i suoi eleganti portici.
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1531572753322-ad063cecc140?w=800&h=600&fit=crop" alt="Ravenna" class="w-full h-48 object-cover">
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Ravenna</h3>
+              <p class="text-gray-600 mb-2">📍 35 km</p>
+              <p class="text-gray-700">
+                Otto monumenti patrimonio UNESCO con i mosaici bizantini più belli al mondo. 
+                Una città d'arte imperdibile.
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=800&h=600&fit=crop" alt="Forlì" class="w-full h-48 object-cover">
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Forlì</h3>
+              <p class="text-gray-600 mb-2">📍 20 km</p>
+              <p class="text-gray-700">
+                Scopri Piazza Saffi, una delle piazze più grandi d'Italia, i musei San Domenico 
+                e il centro storico rinascimentale.
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop" alt="Cesenatico" class="w-full h-48 object-cover">
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Cesenatico</h3>
+              <p class="text-gray-600 mb-2">📍 25 km</p>
+              <p class="text-gray-700">
+                Borgo marinaro con il porto canale leonardesco, spiagge attrezzate e ottimi 
+                ristoranti di pesce.
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop" alt="Rimini" class="w-full h-48 object-cover">
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Rimini</h3>
+              <p class="text-gray-600 mb-2">📍 40 km</p>
+              <p class="text-gray-700">
+                Oltre alle spiagge, scopri l'arco di Augusto, il ponte di Tiberio e il borgo 
+                di San Giuliano, amato da Fellini.
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1571074681475-ade6e5a91c62?w=800&h=600&fit=crop" alt="San Marino" class="w-full h-48 object-cover">
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Repubblica di San Marino</h3>
+              <p class="text-gray-600 mb-2">📍 30 km</p>
+              <p class="text-gray-700">
+                La più antica repubblica del mondo, con le sue tre torri, un panorama mozzafiato 
+                e il centro storico medievale.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Nature & Outdoors -->
+      <div class="mb-16">
+        <h2 class="section-title">Natura e Attività all'Aperto</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          
+          <div class="card">
+            <div class="p-6">
+              <div class="text-4xl mb-4">🚴</div>
+              <h3 class="text-xl font-bold mb-2">Ciclismo nelle Colline</h3>
+              <p class="text-gray-700 mb-4">
+                Le dolci colline romagnole sono perfette per il ciclismo. Numerosi percorsi tra vigneti, 
+                borghi medievali e panorami mozzafiato. Itinerari per tutti i livelli.
+              </p>
+              <ul class="text-gray-600 space-y-1">
+                <li>• Percorso della Via Romagna (ciclovia)</li>
+                <li>• Salita al Monte Fumaiolo</li>
+                <li>• Tour dei castelli malatestiani</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="p-6">
+              <div class="text-4xl mb-4">🥾</div>
+              <h3 class="text-xl font-bold mb-2">Trekking e Escursioni</h3>
+              <p class="text-gray-700 mb-4">
+                Sentieri escursionistici nell'Appennino Tosco-Romagnolo, perfetti per chi ama 
+                camminare nella natura incontaminata.
+              </p>
+              <ul class="text-gray-600 space-y-1">
+                <li>• Parco Nazionale Foreste Casentinesi</li>
+                <li>• Sentieri del Savio</li>
+                <li>• Monte Fumaiolo (sorgente del Tevere)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="p-6">
+              <div class="text-4xl mb-4">🏖️</div>
+              <h3 class="text-xl font-bold mb-2">Mare Adriatico</h3>
+              <p class="text-gray-700 mb-4">
+                A soli 25 km trovi le famose spiagge della Riviera Romagnola, con stabilimenti 
+                balneari attrezzati e ogni tipo di servizio.
+              </p>
+              <ul class="text-gray-600 space-y-1">
+                <li>• Cesenatico e le sue spiagge</li>
+                <li>• Milano Marittima</li>
+                <li>• Rimini e Riccione</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="p-6">
+              <div class="text-4xl mb-4">🏰</div>
+              <h3 class="text-xl font-bold mb-2">Borghi Medievali</h3>
+              <p class="text-gray-700 mb-4">
+                Visita gli splendidi borghi medievali dell'entroterra romagnolo, ricchi di storia 
+                e tradizioni.
+              </p>
+              <ul class="text-gray-600 space-y-1">
+                <li>• Bertinoro (balcone di Romagna)</li>
+                <li>• Longiano</li>
+                <li>• Montiano</li>
+                <li>• Sogliano al Rubicone</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Food & Wine -->
+      <div class="mb-16">
+        <h2 class="section-title">Enogastronomia</h2>
+        <div class="bg-white rounded-xl shadow-lg p-8">
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h3 class="text-xl font-bold mb-4">🍷 Cantine e Vigneti</h3>
+              <p class="text-gray-700 mb-4">
+                La Romagna è famosa per i suoi vini. Degusta Sangiovese, Albana e Trebbiano 
+                nelle cantine locali:
+              </p>
+              <ul class="text-gray-600 space-y-2">
+                <li>• Strada dei Vini e dei Sapori di Forlì-Cesena</li>
+                <li>• Cantine con degustazione e visite guidate</li>
+                <li>• Tour enogastronomici organizzati</li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold mb-4">🍝 Sapori Locali</h3>
+              <p class="text-gray-700 mb-4">
+                Assaggia i prodotti tipici della tradizione romagnola:
+              </p>
+              <ul class="text-gray-600 space-y-2">
+                <li>• Piadina romagnola IGP</li>
+                <li>• Squacquerone DOP e formaggi di fossa</li>
+                <li>• Cappelletti e passatelli</li>
+                <li>• Salumi artigianali</li>
+                <li>• Mercati contadini locali</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Theme Parks & Entertainment -->
+      <div>
+        <h2 class="section-title">Parchi e Divertimento</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          
+          <div class="card">
+            <div class="p-6">
+              <div class="text-4xl mb-4">🎢</div>
+              <h3 class="text-xl font-bold mb-2">Mirabilandia</h3>
+              <p class="text-gray-600 mb-2">📍 35 km</p>
+              <p class="text-gray-700">
+                Il più grande parco divertimenti d'Italia con attrazioni per tutta la famiglia.
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="p-6">
+              <div class="text-4xl mb-4">🐬</div>
+              <h3 class="text-xl font-bold mb-2">Acquario di Cattolica</h3>
+              <p class="text-gray-600 mb-2">📍 50 km</p>
+              <p class="text-gray-700">
+                Uno dei più grandi acquari dell'Adriatico con squali, pinguini e lontre.
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="p-6">
+              <div class="text-4xl mb-4">🌊</div>
+              <h3 class="text-xl font-bold mb-2">Parchi Acquatici</h3>
+              <p class="text-gray-600 mb-2">📍 30-50 km</p>
+              <p class="text-gray-700">
+                Aquafan a Riccione e altri parchi acquatici della Riviera Romagnola.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 bg-primary-600 text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">Pronto a Esplorare la Romagna?</h2>
+      <p class="text-xl mb-8">Prenota il tuo soggiorno e scopri tutte queste meraviglie</p>
+      <button id="ctaBooking" class="bg-white text-primary-700 hover:bg-gray-100 font-semibold py-4 px-8 rounded-lg text-lg transition duration-200 shadow-lg">
+        Verifica Disponibilità
+      </button>
+    </div>
+  </section>
+
+  <!-- Calendar Modal (same as homepage) -->
+  <div id="calendarModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto">
+      <div class="p-6 border-b border-gray-200">
+        <div class="flex justify-between items-center">
+          <h2 class="text-2xl font-bold text-gray-900">Verifica Disponibilità</h2>
+          <button id="closeCalendar" class="text-gray-500 hover:text-gray-700">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="p-6">
+        <div id="calendar" class="mb-6"></div>
+        <div class="bg-gray-50 p-6 rounded-lg">
+          <h3 class="text-xl font-bold mb-4">Richiesta di Prenotazione</h3>
+          <form name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="space-y-4">
+            <input type="hidden" name="form-name" value="booking">
+            <p class="hidden"><label>Don't fill this out if you're human: <input name="bot-field" /></label></p>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label for="checkIn" class="block text-sm font-medium text-gray-700 mb-1">Data Check-in</label>
+                <input type="date" id="checkIn" name="checkIn" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+              </div>
+              <div>
+                <label for="checkOut" class="block text-sm font-medium text-gray-700 mb-1">Data Check-out</label>
+                <input type="date" id="checkOut" name="checkOut" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+              </div>
+            </div>
+            <div>
+              <label for="guests" class="block text-sm font-medium text-gray-700 mb-1">Numero di Ospiti</label>
+              <select id="guests" name="guests" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                <option value="">Seleziona...</option>
+                <option value="1">1 ospite</option>
+                <option value="2">2 ospiti</option>
+                <option value="3">3 ospiti</option>
+                <option value="4">4 ospiti</option>
+                <option value="5">5 ospiti</option>
+                <option value="6">6 ospiti</option>
+              </select>
+            </div>
+            <div>
+              <label for="bookingName" class="block text-sm font-medium text-gray-700 mb-1">Nome Completo</label>
+              <input type="text" id="bookingName" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+            </div>
+            <div>
+              <label for="bookingEmail" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+              <input type="email" id="bookingEmail" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+            </div>
+            <div>
+              <label for="bookingPhone" class="block text-sm font-medium text-gray-700 mb-1">Telefono</label>
+              <input type="tel" id="bookingPhone" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+            </div>
+            <div>
+              <label for="bookingMessage" class="block text-sm font-medium text-gray-700 mb-1">Messaggio (opzionale)</label>
+              <textarea id="bookingMessage" name="message" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"></textarea>
+            </div>
+            <button type="submit" class="btn-primary w-full">Invia Richiesta di Prenotazione</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">Casa in Collina</h3>
+          <p class="text-gray-400">La tua casa vacanze nella campagna cesenate</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-4">Link Utili</h3>
+          <ul class="space-y-2">
+            <li><a href="/" class="text-gray-400 hover:text-white">Home</a></li>
+            <li><a href="/things-to-do.html" class="text-gray-400 hover:text-white">Cosa Fare</a></li>
+            <li><a href="/contact.html" class="text-gray-400 hover:text-white">Contatti</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-4">Seguici</h3>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white">Facebook</a>
+            <a href="#" class="text-gray-400 hover:text-white">Instagram</a>
+          </div>
+        </div>
+      </div>
+      <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
+        <p>&copy; 2026 Casa in Collina. Tutti i diritti riservati.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
