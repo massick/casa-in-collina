@@ -7,7 +7,3 @@
   from = "/*"
   to = "/index.html"
   status = 200
-
-# Form submissions
-[[plugins]]
-  package = "@netlify/plugin-forms"
