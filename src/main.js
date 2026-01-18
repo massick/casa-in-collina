@@ -267,7 +267,13 @@ function showSuccessMessage(message) {
 }
 
 // Form success handling (Netlify Forms redirects by default, but we can add custom handling)
-if (window.location.search.includes("success=true")) {
+if (window.location.search.includes("success=booking")) {
+  showSuccessMessage(
+    "Grazie per la tua richiesta di prenotazione! Ti risponderemo al più presto.",
+  );
+}
+
+if (window.location.search.includes("success=contact")) {
   showSuccessMessage(
     "Grazie per averci contattato! Ti risponderemo al più presto.",
   );
