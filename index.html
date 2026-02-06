@@ -15,11 +15,11 @@
   <!-- Navigation -->
   <nav class="bg-white shadow-md sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-20">
+      <div class="flex justify-between items-center h-16">
         <div class="flex-shrink-0">
           <a href="/" class="flex items-center space-x-3">
-            <img src="/images/logo.jpeg" alt="Villa Cubetto Logo" class="h-16 w-16 object-cover rounded-lg shadow-md">
-            <span class="text-2xl md:text-3xl font-bold text-primary-700">Villa Cubetto</span>
+            <img src="/images/logo.jpeg" alt="Villa Cubetto Logo" class="h-12 w-12 object-cover rounded-lg">
+            <span class="text-2xl font-bold text-primary-700">Villa Cubetto</span>
           </a>
         </div>
         <div class="hidden md:block">
@@ -30,7 +30,6 @@
             <button id="openCalendar" class="btn-primary text-sm py-2">Prenota Ora</button>
           </div>
         </div>
-        <!-- Mobile menu button -->
         <div class="md:hidden">
           <button id="mobile-menu-button" class="text-gray-700 hover:text-primary-600 focus:outline-none">
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -40,7 +39,6 @@
         </div>
       </div>
     </div>
-    <!-- Mobile menu -->
     <div id="mobile-menu" class="hidden md:hidden">
       <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
         <a href="/" class="text-gray-900 hover:text-primary-600 block px-3 py-2 rounded-md text-base font-medium">Home</a>
@@ -52,32 +50,14 @@
   </nav>
 
   <!-- Hero Section with Carousel -->
-  <section class="relative">
-    <div class="swiper heroSwiper h-[500px] md:h-[600px]">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1920&h=1080&fit=crop" alt="Vista esterna di Villa Cubetto" class="w-full h-full object-cover">
-          <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-            <div class="text-center text-white px-4">
-              <img src="/images/logo.jpeg" alt="Villa Cubetto Logo" class="mx-auto w-32 h-32 md:w-40 md:h-40 object-cover rounded-2xl shadow-2xl border-4 border-white mb-6">
-              <h1 class="text-4xl md:text-6xl font-bold mb-8">Benvenuti a Villa Cubetto</h1>
-              <button id="heroBooking" class="btn-primary text-lg">Verifica Disponibilità</button>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1920&h=1080&fit=crop" alt="Interno di Villa Cubetto" class="w-full h-full object-cover">
-        </div>
-        <div class="swiper-slide">
-          <img src="https://images.unsplash.com/photo-1464093515883-ec948246accb?w=1920&h=1080&fit=crop" alt="Vista panoramica sulle colline romagnole" class="w-full h-full object-cover">
-        </div>
-        <div class="swiper-slide">
-          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&h=1080&fit=crop" alt="Idromassaggio e giardino" class="w-full h-full object-cover">
-        </div>
+  <section class="relative h-[500px] md:h-[600px]">
+    <img src="/images/main.jpg" alt="Vista esterna di Villa Cubetto" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+      <div class="text-center text-white px-4">
+        <img src="/images/logo.jpeg" alt="Villa Cubetto Logo" class="mx-auto w-48 h-48 md:w-64 md:h-64 object-cover rounded-2xl shadow-2xl border-4 border-white mb-6">
+        <h1 class="text-4xl md:text-6xl font-bold mb-8">Benvenuti a Villa Cubetto</h1>
+        <button id="heroBooking" class="btn-primary text-lg">Verifica Disponibilità</button>
       </div>
-      <div class="swiper-pagination"></div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
     </div>
   </section>
 
@@ -213,34 +193,70 @@
       <div class="swiper gallerySwiper">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
-            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop" alt="Villa Cubetto - Esterno" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
+            <img src="/images/gallery/2f241a76-9e12-403b-8687-7eaa00bcb900.jpg" alt="Villa Cubetto" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
           </div>
           <div class="swiper-slide">
-            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop" alt="Villa Cubetto - Soggiorno" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
+            <img src="/images/gallery/40b4b48e-2b61-4af8-b6d6-d8854ae6301e.JPG" alt="Villa Cubetto" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
           </div>
           <div class="swiper-slide">
-            <img src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&h=600&fit=crop" alt="Villa Cubetto - Camera da letto" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
+            <img src="/images/gallery/4d8a8f33-dae0-49ce-b244-2eba27f6667b.jpg" alt="Villa Cubetto" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
           </div>
           <div class="swiper-slide">
-            <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&h=600&fit=crop" alt="Villa Cubetto - Cucina" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
+            <img src="/images/gallery/6208f9c8-85f0-4a6e-af4b-0475f624a923.jpg" alt="Villa Cubetto" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
           </div>
           <div class="swiper-slide">
-            <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800&h=600&fit=crop" alt="Villa Cubetto - Idromassaggio" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
+            <img src="/images/gallery/686112ec-5e86-43e2-b158-07e6b2850895.JPG" alt="Villa Cubetto" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
           </div>
           <div class="swiper-slide">
-            <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800&h=600&fit=crop" alt="Villa Cubetto - Vista panoramica" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
+            <img src="/images/gallery/6a12beb0-1dab-45cf-9eed-331dfaba29f8.jpg" alt="Villa Cubetto" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
           </div>
           <div class="swiper-slide">
-            <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&h=600&fit=crop" alt="Villa Cubetto - Giardino" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
+            <img src="/images/gallery/726814ed-f2ce-49b7-9748-0214ee836cdd.jpg" alt="Villa Cubetto" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
           </div>
           <div class="swiper-slide">
-            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop" alt="Villa Cubetto - Zona relax" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
+            <img src="/images/gallery/73ec1f9c-cec0-478d-97e7-5a8b9d2f6684.JPG" alt="Villa Cubetto" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
           </div>
           <div class="swiper-slide">
-            <img src="https://images.unsplash.com/photo-1600047509782-20d39509f26d?w=800&h=600&fit=crop" alt="Villa Cubetto - Terrazza" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
+            <img src="/images/gallery/7951d996-9ee3-4884-bab5-703097fc9d0c.JPG" alt="Villa Cubetto" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
           </div>
           <div class="swiper-slide">
-            <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&h=600&fit=crop" alt="Villa Cubetto - Dettagli" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
+            <img src="/images/gallery/8719460f-8646-4f61-8732-08a525d76611.JPG" alt="Villa Cubetto" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
+          </div>
+          <div class="swiper-slide">
+            <img src="/images/gallery/91a77984-1e7a-4422-ae00-883d8fbc178d.jpg" alt="Villa Cubetto" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
+          </div>
+          <div class="swiper-slide">
+            <img src="/images/gallery/979b4bc0-a9f8-4c14-ba70-fbba542e7d31.jpg" alt="Villa Cubetto" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
+          </div>
+          <div class="swiper-slide">
+            <img src="/images/gallery/9a88f7b7-7c93-4bad-99b2-464334014195.jpg" alt="Villa Cubetto" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
+          </div>
+          <div class="swiper-slide">
+            <img src="/images/gallery/a59bbbd9-1744-4577-bb7e-be3a5397e294.jpg" alt="Villa Cubetto" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
+          </div>
+          <div class="swiper-slide">
+            <img src="/images/gallery/a67a85ed-e407-4c1b-b47d-920c042f9efa.jpg" alt="Villa Cubetto" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
+          </div>
+          <div class="swiper-slide">
+            <img src="/images/gallery/c8a5bf8f-2eac-4a23-b320-83f0bdcf4fb9.jpg" alt="Villa Cubetto" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
+          </div>
+          <div class="swiper-slide">
+            <img src="/images/gallery/ca8d8c36-beec-4499-b8ab-8eb9aa187881.jpg" alt="Villa Cubetto" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
+          </div>
+          <div class="swiper-slide">
+            <img src="/images/gallery/d5eec986-5f54-481e-9768-a4a3a2ef9d54.jpg" alt="Villa Cubetto" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
+          </div>
+          <div class="swiper-slide">
+            <img src="/images/gallery/de7cf917-7733-4303-8e9c-a02fc19081ff.JPG" alt="Villa Cubetto" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
+          </div>
+          <div class="swiper-slide">
+            <img src="/images/gallery/e6705dd1-c3b9-44be-a718-8838b61510ad.jpg" alt="Villa Cubetto" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
+          </div>
+          <div class="swiper-slide">
+            <img src="/images/gallery/e91dd0f8-b87b-48a4-b8b2-0091b45acd32.jpg" alt="Villa Cubetto" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
+          </div>
+          <div class="swiper-slide">
+            <img src="/images/gallery/f20de2f8-4e46-4e9b-96db-cff0ddbf23bb.jpg" alt="Villa Cubetto" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition" data-gallery="gallery">
           </div>
         </div>
         <div class="swiper-pagination"></div>

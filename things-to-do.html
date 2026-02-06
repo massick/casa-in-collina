@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cosa Fare - Villa Cubetto</title>
   <meta name="description" content="Scopri le attrazioni e le attività vicino a Villa Cubetto a Cesena">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/style.css">
 </head>
 <body class="bg-gray-50">
@@ -270,7 +273,6 @@
                 <li>• Via Romagna (ciclovia regionale)</li>
                 <li>• Tour dei castelli in bici</li>
                 <li>• Percorsi MTB in collina</li>
-                <li>• Noleggio bici disponibile nelle vicinanze</li>
               </ul>
             </div>
           </div>
@@ -404,6 +406,33 @@
         <div id="calendar" class="mb-6"></div>
         <div class="bg-gray-50 p-6 rounded-lg">
           <h3 class="text-xl font-bold mb-4">Richiesta di Prenotazione</h3>
+          
+          <!-- Pricing Info Section -->
+          <div class="bg-white border border-secondary-200 rounded-lg p-4 mb-6">
+            <h4 class="font-semibold text-gray-900 mb-3">Tariffe</h4>
+            <div class="grid grid-cols-2 gap-3 text-sm">
+              <div>
+                <span class="text-gray-600">Prezzo per notte:</span>
+                <p class="font-semibold text-primary-700">€150</p>
+              </div>
+              <div>
+                <span class="text-gray-600">Soggiorno minimo:</span>
+                <p class="font-semibold">3 notti</p>
+              </div>
+              <div>
+                <span class="text-gray-600">Sconto settimanale:</span>
+                <p class="font-semibold text-secondary-600">18%</p>
+              </div>
+              <div>
+                <span class="text-gray-600">Sconto mensile:</span>
+                <p class="font-semibold text-secondary-600">30%</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Price Summary -->
+          <div id="priceSummary" class="mb-6"></div>
+          
           <form name="booking" method="POST" action="/things-to-do.html?success=booking" data-netlify="true" netlify-honeypot="bot-field" class="space-y-4">
             <input type="hidden" name="form-name" value="booking">
             <p class="hidden"><label>Don't fill this out if you're human: <input name="bot-field" /></label></p>

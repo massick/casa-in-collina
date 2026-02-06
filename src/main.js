@@ -186,7 +186,7 @@ function initCalendar() {
     initialView: "dayGridMonth",
     locale: itLocale,
     headerToolbar: {
-      left: "prev,next today",
+      left: "prev,next",
       center: "title",
       right: "", // Remove "Mese" button
     },
@@ -208,7 +208,7 @@ function initCalendar() {
       {
         url: "/.netlify/functions/fetch-ical?source=booking",
         format: "ics",
-        color: "#dc2626",
+        color: "#9ca3af",
         textColor: "white",
       },
     ],
@@ -240,12 +240,22 @@ function initCalendar() {
         return;
       }
 
-      // Calculate minimum stay (3 nights)
-      const daysDiff =
-        (selectionInfo.end - selectionInfo.start) / (1000 * 60 * 60 * 24);
-      if (daysDiff < MIN_NIGHTS) {
+      // FullCalendar uses exclusive end dates, so subtract 1 day for the actual checkout date
+      const actualCheckOut = new Date(
+        selectionInfo.end.getTime() - 24 * 60 * 60 * 1000,
+      );
+
+      // Calculate actual nights (check-out minus check-in)
+      const actualNights =
+        (actualCheckOut - selectionInfo.start) / (1000 * 60 * 60 * 24);
+
+      // Check minimum stay (3 nights) - but skip check if this is just the first click (waiting for second click)
+      // We know it's the first click if actualNights is 1 and firstSelectedDate is set
+      const isFirstClickOnly = actualNights === 1 && firstSelectedDate !== null;
+
+      if (actualNights < MIN_NIGHTS && !isFirstClickOnly) {
         // Silently prevent - don't show alert for single click
-        if (daysDiff > 1) {
+        if (actualNights >= 1) {
           alert(
             `Il soggiorno minimo è di ${MIN_NIGHTS} notti. Seleziona un periodo più lungo.`,
           );
@@ -254,13 +264,30 @@ function initCalendar() {
         return;
       }
 
-      // Fill in the form fields
-      if (checkInInput && checkOutInput) {
-        checkInInput.value = selectionInfo.startStr;
-        checkOutInput.value = selectionInfo.endStr;
+      // If this is just the first click, keep the highlight but don't fill the form yet
+      if (isFirstClickOnly) {
+        return; // Keep the selection highlighted, wait for second click
+      }
 
-        // Update price summary
-        updatePriceSummary(selectionInfo.start, selectionInfo.end);
+      // Fill in the form fields
+
+      // Format dates in local timezone (not UTC) to avoid timezone offset issues
+      const formatDateLocal = (date) => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
+        return `${year}-${month}-${day}`;
+      };
+
+      const checkInStr = formatDateLocal(selectionInfo.start);
+      const checkOutStr = formatDateLocal(actualCheckOut);
+
+      if (checkInInput && checkOutInput) {
+        checkInInput.value = checkInStr;
+        checkOutInput.value = checkOutStr;
+
+        // Update price summary with actual dates
+        updatePriceSummary(selectionInfo.start, actualCheckOut);
 
         // Scroll to form
         checkInInput.scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -282,8 +309,9 @@ function initCalendar() {
       }
 
       if (!firstSelectedDate) {
-        // First click - store the start date (no alert)
+        // First click - store the start date and keep it highlighted
         firstSelectedDate = dateClickInfo.date;
+        // Select just this single date to keep it highlighted
         calendar.select(
           firstSelectedDate,
           new Date(firstSelectedDate.getTime() + 24 * 60 * 60 * 1000),
