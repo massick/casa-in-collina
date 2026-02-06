@@ -28,11 +28,16 @@
 
 /* Custom styles for calendar */
 .fc {
-  @apply max-w-4xl mx-auto;
+  @apply max-w-2xl mx-auto; /* Reduced even more for smaller modal */
+}
+
+/* Make calendar modal smaller on desktop */
+#calendarModal > div {
+  @apply max-w-3xl; /* Reduced from max-w-4xl */
 }
 
 .fc-event {
-  @apply bg-gray-400 border-gray-500;
+  @apply bg-red-500 border-red-600;
 }
 
 .fc-event-available {
@@ -41,12 +46,12 @@
 
 /* Highlight selected date range */
 .fc .fc-highlight {
-  @apply bg-primary-200 opacity-50;
+  @apply bg-primary-100 opacity-70;
 }
 
 /* Change cursor for selectable dates */
-.fc .fc-daygrid-day:not(.fc-day-past):hover {
-  @apply cursor-pointer bg-primary-50;
+.fc .fc-daygrid-day:not(.fc-day-past):not(.fc-day-disabled):hover {
+  @apply cursor-pointer bg-secondary-50;
 }
 
 .fc .fc-daygrid-day.fc-day-past {

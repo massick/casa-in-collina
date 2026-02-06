@@ -41,6 +41,34 @@ if (heroSwiper) {
   });
 }
 
+// Initialize gallery Swiper (only on homepage)
+const gallerySwiper = document.querySelector(".gallerySwiper");
+if (gallerySwiper) {
+  new Swiper(".gallerySwiper", {
+    modules: [Navigation, Pagination],
+    slidesPerView: 1,
+    spaceBetween: 20,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+      640: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+      },
+    },
+  });
+}
+
 // Calendar Modal functionality
 const calendarModal = document.getElementById("calendarModal");
 const openCalendarButtons = document.querySelectorAll(
@@ -77,6 +105,78 @@ if (calendarModal) {
 }
 
 // Initialize FullCalendar with iCal sync
+let firstSelectedDate = null;
+const PRICE_PER_NIGHT = 150;
+const MIN_NIGHTS = 3;
+const WEEKLY_DISCOUNT = 0.18; // 18%
+const MONTHLY_DISCOUNT = 0.3; // 30%
+
+function calculatePrice(nights) {
+  let basePrice = nights * PRICE_PER_NIGHT;
+  let discount = 0;
+
+  if (nights >= 30) {
+    discount = basePrice * MONTHLY_DISCOUNT;
+  } else if (nights >= 7) {
+    discount = basePrice * WEEKLY_DISCOUNT;
+  }
+
+  return {
+    basePrice,
+    discount,
+    total: basePrice - discount,
+    nights,
+  };
+}
+
+function updatePriceSummary(startDate, endDate) {
+  const summaryEl = document.getElementById("priceSummary");
+  if (!summaryEl || !startDate || !endDate) return;
+
+  const nights = Math.round((endDate - startDate) / (1000 * 60 * 60 * 24));
+  const pricing = calculatePrice(nights);
+
+  const formatter = new Intl.DateTimeFormat("it-IT", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
+  summaryEl.innerHTML = `
+    <div class="bg-primary-50 border-2 border-primary-200 rounded-lg p-4">
+      <h4 class="font-bold text-lg text-primary-900 mb-3">Riepilogo Prenotazione</h4>
+      <div class="space-y-2 text-sm">
+        <div class="flex justify-between">
+          <span class="text-gray-700">Check-in:</span>
+          <span class="font-semibold">${formatter.format(startDate)}</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-gray-700">Check-out:</span>
+          <span class="font-semibold">${formatter.format(endDate)}</span>
+        </div>
+        <div class="flex justify-between border-t pt-2">
+          <span class="text-gray-700">€${PRICE_PER_NIGHT} × ${nights} ${nights === 1 ? "notte" : "notti"}</span>
+          <span>€${pricing.basePrice.toFixed(2)}</span>
+        </div>
+        ${
+          pricing.discount > 0
+            ? `
+          <div class="flex justify-between text-secondary-600">
+            <span>Sconto ${nights >= 30 ? "mensile (30%)" : "settimanale (18%)"}</span>
+            <span>-€${pricing.discount.toFixed(2)}</span>
+          </div>
+        `
+            : ""
+        }
+        <div class="flex justify-between border-t pt-2 font-bold text-lg text-primary-700">
+          <span>Totale</span>
+          <span>€${pricing.total.toFixed(2)}</span>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 function initCalendar() {
   const calendarEl = document.getElementById("calendar");
   if (!calendarEl) return;
@@ -88,43 +188,36 @@ function initCalendar() {
     headerToolbar: {
       left: "prev,next today",
       center: "title",
-      right: "dayGridMonth",
+      right: "", // Remove "Mese" button
     },
     height: "auto",
 
     // Enable date range selection
     selectable: true,
     selectMirror: true,
-    selectOverlap: false, // Prevent selecting over booked dates
-    unselectAuto: true,
+    selectOverlap: false,
+    unselectAuto: false,
 
     // Prevent selecting dates in the past
     validRange: {
       start: new Date().toISOString().split("T")[0],
     },
 
-    // Event sources - iCal feeds from Booking.com and Airbnb
+    // Event sources - iCal feed from Airbnb
     eventSources: [
       {
-        // Airbnb iCal feed
-        url: "/.netlify/functions/fetch-ical?source=airbnb",
-        format: "ics",
-        color: "#FF5A5F",
-        textColor: "white",
-      },
-      {
-        // Booking.com iCal feed
         url: "/.netlify/functions/fetch-ical?source=booking",
         format: "ics",
-        color: "#003580",
+        color: "#dc2626",
         textColor: "white",
       },
     ],
 
-    // Customize event rendering
+    // Customize event rendering - show "Non disponibile"
     eventDidMount: function (info) {
-      // Mark booked dates
-      info.el.title = info.event.title || "Occupato";
+      info.el.innerHTML =
+        '<div class="fc-event-main" style="font-size: 0.7rem; text-align: center;">Non disponibile</div>';
+      info.el.title = "Non disponibile";
     },
 
     // Handle date range selection
@@ -141,20 +234,22 @@ function initCalendar() {
       });
 
       if (hasOverlap) {
-        alert(
-          "Le date selezionate contengono giorni già occupati. Scegli un altro periodo.",
-        );
+        // Silently prevent selection by unselecting - no alert
         calendar.unselect();
+        firstSelectedDate = null;
         return;
       }
 
-      // Calculate minimum stay (2 nights)
+      // Calculate minimum stay (3 nights)
       const daysDiff =
         (selectionInfo.end - selectionInfo.start) / (1000 * 60 * 60 * 24);
-      if (daysDiff < 2) {
-        alert(
-          "Il soggiorno minimo è di 2 notti. Seleziona un periodo più lungo.",
-        );
+      if (daysDiff < MIN_NIGHTS) {
+        // Silently prevent - don't show alert for single click
+        if (daysDiff > 1) {
+          alert(
+            `Il soggiorno minimo è di ${MIN_NIGHTS} notti. Seleziona un periodo più lungo.`,
+          );
+        }
         calendar.unselect();
         return;
       }
@@ -164,8 +259,57 @@ function initCalendar() {
         checkInInput.value = selectionInfo.startStr;
         checkOutInput.value = selectionInfo.endStr;
 
+        // Update price summary
+        updatePriceSummary(selectionInfo.start, selectionInfo.end);
+
         // Scroll to form
         checkInInput.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+    },
+
+    // Handle single date click for two-click selection
+    dateClick: function (dateClickInfo) {
+      // Check if this date is booked
+      const events = calendar.getEvents();
+      const isBooked = events.some((event) => {
+        return (
+          dateClickInfo.date >= event.start && dateClickInfo.date < event.end
+        );
+      });
+
+      if (isBooked) {
+        return; // Can't select booked dates
+      }
+
+      if (!firstSelectedDate) {
+        // First click - store the start date (no alert)
+        firstSelectedDate = dateClickInfo.date;
+        calendar.select(
+          firstSelectedDate,
+          new Date(firstSelectedDate.getTime() + 24 * 60 * 60 * 1000),
+        );
+      } else {
+        // Second click - create range from first to second
+        const secondDate = dateClickInfo.date;
+
+        if (secondDate > firstSelectedDate) {
+          // Valid range - select from first to second (add 1 day to second for exclusive end)
+          const endDate = new Date(secondDate.getTime() + 24 * 60 * 60 * 1000);
+          calendar.unselect();
+          calendar.select(firstSelectedDate, endDate);
+        } else {
+          // Second click is before first - restart selection
+          calendar.unselect();
+          firstSelectedDate = secondDate;
+          calendar.select(
+            firstSelectedDate,
+            new Date(firstSelectedDate.getTime() + 24 * 60 * 60 * 1000),
+          );
+          return;
+        }
+
+        // Reset for next selection
+        firstSelectedDate = null;
       }
     },
 
@@ -199,12 +343,12 @@ if (bookingForm) {
       return false;
     }
 
-    // Set minimum stay (optional)
+    // Set minimum stay to 3 nights
     const daysDiff =
       (new Date(checkOut) - new Date(checkIn)) / (1000 * 60 * 60 * 24);
-    if (daysDiff < 2) {
+    if (daysDiff < MIN_NIGHTS) {
       e.preventDefault();
-      alert("Il soggiorno minimo è di 2 notti");
+      alert(`Il soggiorno minimo è di ${MIN_NIGHTS} notti`);
       return false;
     }
 
@@ -277,4 +421,75 @@ if (window.location.search.includes("success=contact")) {
   showSuccessMessage(
     "Grazie per averci contattato! Ti risponderemo al più presto.",
   );
+}
+
+// Gallery lightbox functionality
+const lightbox = document.getElementById("lightbox");
+const lightboxImage = document.getElementById("lightboxImage");
+const closeLightbox = document.getElementById("closeLightbox");
+const prevLightbox = document.getElementById("prevLightbox");
+const nextLightbox = document.getElementById("nextLightbox");
+
+if (lightbox && lightboxImage) {
+  const galleryImages = document.querySelectorAll('[data-gallery="gallery"]');
+  let currentImageIndex = 0;
+
+  // Open lightbox on image click
+  galleryImages.forEach((img, index) => {
+    img.addEventListener("click", () => {
+      currentImageIndex = index;
+      lightboxImage.src = img.src;
+      lightboxImage.alt = img.alt;
+      lightbox.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+    });
+  });
+
+  // Close lightbox
+  const closeLightboxFn = () => {
+    lightbox.classList.add("hidden");
+    document.body.style.overflow = "auto";
+  };
+
+  closeLightbox?.addEventListener("click", closeLightboxFn);
+
+  // Close on background click
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) {
+      closeLightboxFn();
+    }
+  });
+
+  // Close on Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !lightbox.classList.contains("hidden")) {
+      closeLightboxFn();
+    }
+  });
+
+  // Navigate to previous image
+  prevLightbox?.addEventListener("click", () => {
+    currentImageIndex =
+      (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+    lightboxImage.src = galleryImages[currentImageIndex].src;
+    lightboxImage.alt = galleryImages[currentImageIndex].alt;
+  });
+
+  // Navigate to next image
+  nextLightbox?.addEventListener("click", () => {
+    currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+    lightboxImage.src = galleryImages[currentImageIndex].src;
+    lightboxImage.alt = galleryImages[currentImageIndex].alt;
+  });
+
+  // Arrow key navigation
+  document.addEventListener("keydown", (e) => {
+    if (!lightbox.classList.contains("hidden")) {
+      if (e.key === "ArrowLeft") {
+        prevLightbox?.click();
+      } else if (e.key === "ArrowRight") {
+        nextLightbox?.click();
+      }
+    }
+  });
 }

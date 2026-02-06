@@ -2,3 +2,8 @@
   command = "npm run build"
   publish = "dist"
   functions = "netlify/functions"
+
+[dev]
+  command = "vite"
+  targetPort = 5173
+  autoLaunch = false

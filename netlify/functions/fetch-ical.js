@@ -5,10 +5,11 @@ export async function handler(event) {
   const { source } = event.queryStringParameters || {};
 
   // Store your actual iCal URLs as environment variables in Netlify
-  // Go to Site Settings > Build & Deploy > Environment variables
+  // For local testing, set BOOKING_ICAL_URL in .env file
   const icalUrls = {
-    airbnb: process.env.AIRBNB_ICAL_URL || "",
-    booking: process.env.BOOKING_ICAL_URL || "",
+    booking:
+      process.env.BOOKING_ICAL_URL ||
+      "https://ical.booking.com/v1/export?t=b9f91cab-3e50-4826-8fe2-671d3bdc533d",
   };
 
   const url = icalUrls[source];
