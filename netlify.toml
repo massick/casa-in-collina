@@ -7,3 +7,29 @@
   command = "vite"
   targetPort = 5173
   autoLaunch = false
+
+# Language-based redirects: English-browser visitors are sent to /en/
+# Uses 302 (temporary) to avoid caching issues and stay SEO-safe with hreflang
+[[redirects]]
+  from = "/"
+  to = "/en/"
+  status = 302
+  conditions = {Language = ["en"]}
+
+[[redirects]]
+  from = "/things-to-do.html"
+  to = "/en/things-to-do.html"
+  status = 302
+  conditions = {Language = ["en"]}
+
+[[redirects]]
+  from = "/contact.html"
+  to = "/en/contact.html"
+  status = 302
+  conditions = {Language = ["en"]}
+
+# Canonical trailing-slash redirect for the /en sub-path
+[[redirects]]
+  from = "/en"
+  to = "/en/"
+  status = 301
